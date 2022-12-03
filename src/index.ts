@@ -2,18 +2,38 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import reqIp from 'request-ip';
 
+import { counterDB } from './db';
+import { create, fill } from './db/utils';
+
 dotenv.config();
+
+create()
+	.then(() => fill())
+	.catch((err) => {
+		console.error(err);
+	});
 
 const app: Express = express();
 
-let counter = 0;
+app.get('/', async (req: Request, res: Response) => {
+	const counter = await counterDB.getCounter();
 
-app.get('/', (req: Request, res: Response) => {
-	res.send(counter.toString());
+	if (counter) {
+		res.send(counter.value.toString());
+	} else {
+		res.sendStatus(500);
+	}
 });
-app.get('/stat', (req: Request, res: Response) => {
-	res.send(counter.toString());
-	counter++;
+app.get('/stat', async (req: Request, res: Response) => {
+	const counter = await counterDB.updateCounter(
+		req.headers['user-agent']
+	);
+
+	if (counter) {
+		res.send(counter.value.toString());
+	} else {
+		res.sendStatus(500);
+	}
 });
 
 app.get('/about', (req: Request, res: Response) => {
