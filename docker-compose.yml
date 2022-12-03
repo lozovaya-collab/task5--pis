@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   node:
-    image: vpasport/pis-task-9:latest
+    image: anyaloza/task7-pis:latest
     build: .
     depends_on:
       - pgsql
