@@ -7,6 +7,8 @@ COPY tsconfig.json ./
 COPY nodemon.json ./
 COPY src ./src
 COPY .env ./
+COPY config.ts ./
+COPY sql ./sql
 
 EXPOSE 3000
 

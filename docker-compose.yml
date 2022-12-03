@@ -6,7 +6,7 @@ services:
     build: .
     depends_on:
       - pgsql
-    container_name: pis-task-5
+    container_name: task7-pis
     environment:
       - DB_HOST=pgsql
       - DB_PORT=5432
@@ -14,13 +14,9 @@ services:
       - DB_PASSWORD=postgres
       - DB_NAME=db-pis
     ports:
-      - "3002:3002"
+      - "3000:3000"
     user: root
     restart: on-failure
-    deploy:
-      replicas: 4
-      restart_policy:
-        condition: on-failure
 
   pgsql:
     container_name: postgres

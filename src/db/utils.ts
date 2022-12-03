@@ -39,7 +39,6 @@ export const fill = () => {
 		try {
 			const pool = getPool({
 				...db,
-				database: undefined,
 			});
 
 			const fillScript = readFileSync('./sql/fill.sql', {
