@@ -2,11 +2,11 @@ version: "3.8"
 
 services:
   node:
-    image: anyaloza/task7-pis:latest
+    image: anyaloza/task9-pis:latest
     build: .
     depends_on:
       - pgsql
-    container_name: task7-pis
+    container_name: task9-pis
     environment:
       - DB_HOST=pgsql
       - DB_PORT=5432
