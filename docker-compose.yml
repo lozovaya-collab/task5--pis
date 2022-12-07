@@ -17,6 +17,10 @@ services:
       - "3000:3000"
     user: root
     restart: on-failure
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: on-failure
 
   pgsql:
     container_name: postgres
