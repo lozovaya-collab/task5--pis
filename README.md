@@ -1,3 +1,4 @@
+**5 задание**
 Build Dockerfile:
 ```bash
 docker build -t pis5 .
@@ -6,6 +7,12 @@ docker build -t pis5 .
 Run docker image:
 ```bash
 docker run -p 3000:3000 pis5
+```
+
+**7 задание**
+```bash
+docker compose build 
+docker compose up
 ```
 
 Project start on port 3000
