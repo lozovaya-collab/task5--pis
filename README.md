@@ -16,11 +16,11 @@ docker compose up
 ```
 
 **9 задание**
-# start service
+start service
 ```bash
 docker stack deploy -c docker-compose.yml task9-pis
 ```
-# logs
+logs
 ```bash
 docker service logs -f task9-pis_node
 ```
