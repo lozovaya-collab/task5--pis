@@ -5,7 +5,11 @@ import reqIp from 'request-ip';
 import { counterDB } from './db';
 import { create, fill } from './db/utils';
 
+import { db } from '../config';
+
 dotenv.config();
+
+console.log(db);
 
 create()
 	.then(() => fill())

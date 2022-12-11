@@ -16,18 +16,37 @@ export const create = () => {
 				encoding: 'utf-8',
 			});
 
-			pool.connect()
-				.then((result) =>
-					result.query(createSql).then(() => {
-						// console.log(chalk.green('Success'));
-						res(true);
-					})
-				)
-				.catch((err) => {
-					// console.log(chalk.red('Error'));
-					rej(err);
-				});
+			// const promis = new Promise((res2, rej2) => {
+			// 	pool.connect()
+			// 		.then((result) =>
+			// 			result.query(createSql).then(() => {
+			// 				// console.log(chalk.green('Success'));
+			// 				res2(true)
+			// 				res(true);
+			// 			})
+			// 		)
+			// 		.catch((err) => {
+			// 			// console.log(chalk.red('Error'));
+			// 			rej2(err)
+			// 			rej(err);
+			// 		});
+			// })
 			
+			const inter = setInterval(() => {
+				pool.connect()
+					.then((result) =>
+						result.query(createSql).then(() => {
+							// console.log(chalk.green('Success'));
+							clearInterval(inter)
+							res(true);
+						})
+					)
+					.catch((err) => {
+						// console.log(chalk.red('Error'));
+						rej(err);
+					});
+			}, 1000)
+
 		} catch (error) {
 			rej(error);
 		}
